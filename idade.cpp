@@ -19,25 +19,14 @@ bool bissexto(int ano)
 
 bool validadata(int dia, int mes, int ano)
 {    
-     bool bi;
-     bi = bissexto(ano);
-     if (bi == 0)
-     {
-        if(mes == 2 && dia >  28)
-                return 0;
-        } 
-        if (mes>12 || dia>31)
-        {
-           return 0;
-        }
-        if((mes==4 || mes==6 || mes == 9 || mes==11)&&dia>30)
-        {
-            return 0;
-        }
-        else
-        {
-            return 1;
-        }
+    bool bi;
+    bi = bissexto(ano);
+	if(bi == 1 && mes == 2 && dia > 29) return 0;
+    if(bi == 0 && mes == 2 && dia >  28) return 0;
+   	if (mes>12 || dia>31) return 0;
+    if((mes==4 || mes==6 || mes == 9 || mes==11)&&dia>30) return 0;
+    return 1;
+       
 }
 
 int main(int argc, char *argv[])
@@ -49,7 +38,14 @@ int main(int argc, char *argv[])
     {
         cin >> dia >> mes >> ano;
         val = validadata(dia, mes, ano);
+        if (val)
+        {
+        	cout << "Valido" << endl;	
+        }
+        else
+        {
+        	cout << "Invalido" << endl;
+        }
     }
-    system("PAUSE");
     return EXIT_SUCCESS;
 }
